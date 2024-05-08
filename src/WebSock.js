@@ -17,7 +17,8 @@ const WebSock = () => {
     }, []);
 
     function connect() {
-        socket.current = new ReconnectingWebSocket('wss://ws-app-ps7f3efk3q-uc.a.run.app');
+        //socket.current = new ReconnectingWebSocket('wss://ws-app-ps7f3efk3q-uc.a.run.app');
+        socket.current = new ReconnectingWebSocket('ws://localhost:8080');
 
         socket.current.onopen = (event) => {
             console.log(event);
@@ -43,9 +44,9 @@ const WebSock = () => {
 
     const sendMessage = () => {
         const message = {
-            user:username,
+            user: username,
             message: value,
-            id: Date.now(),
+            date: Date.now(),
             event: 'message'
         };
         socket.current.send(JSON.stringify(message));
